@@ -1246,8 +1246,9 @@ class Builder implements BuilderInterface, InjectionAwareInterface
 				if memstr(group, ",") {
 					let group = str_replace(" ", "", group);
 				}
-
-				let group = explode(",", group);
+				var matches = null;
+				preg_match_all("#\((?:[^()]|(?R))+\)|'[^']*'|[^(),\s]+#", group, matches);
+				let group = matches[0];
 			}
 
 			let groupItems = [];
